@@ -146,8 +146,8 @@ def compute_metrics(qvyv,shijian,hang,test_size,random_state):
     for feature, shap_value in zip(X_test, np.abs(shap_values.values).mean(axis=0)):
         shap_data[feature] = shap_value
         print(f"特征: {feature}, SHAP 值: {shap_value}")
-    import sys
-    sys.path.append('../../../public')
+    # import sys
+    # sys.path.append('./写入表2.py')
     from 写入表2 import seve_file
     seve_file(shap_data, hang)
     print("已写入")

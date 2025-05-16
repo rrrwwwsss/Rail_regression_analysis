@@ -12,7 +12,7 @@ def zhixing(diqv,time):
     else:
         size_list = [0.3,0.4,0.5]
     for i in size_list:
-        for j in range(0,100):
+        for j in range(0,60):
             test_size,random_state,R2_improvement, _ = zhibiao(i,j,diqv,time)
             if R2_improvement == 0:
                 continue
@@ -47,7 +47,7 @@ if __name__ == '__main__':
     start_row = 0
     start_col = 0
     hang = 1
-    for p in ["D2"]: #"D0","D1","D2","D3","D4","D5","D6"
+    for p in ["D0"]: #"D0","D1","D2","D3","D4","D5","D6"
         start_col = start_col + 3
         for q in ["Labour Day"]:#,"Have to work","workday","weekend"
             print(p + q + "开始执行")
