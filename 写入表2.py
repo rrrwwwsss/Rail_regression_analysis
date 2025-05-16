@@ -1,7 +1,7 @@
 import openpyxl
 def seve_file(result3,row):
     # 加载现有的 Excel 文件
-    file_path = './结果/师兄SHAP指标分析_new.xlsx'  # 替换为你的文件路径
+    file_path = '结果/师兄SHAP指标分析_new.xlsx'  # 替换为你的文件路径
     wb = openpyxl.load_workbook(file_path)
 
     # 选择活动工作表

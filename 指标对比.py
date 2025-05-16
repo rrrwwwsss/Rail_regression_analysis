@@ -19,7 +19,7 @@ def zhibiao(test_size,random_state,qvyv,time):
     # 读取 Excel 文件（xls 格式）
     print(test_size)
     print(random_state)
-    folder_path = "./数据"  # 替换为实际路径
+    folder_path = "数据"  # 替换为实际路径
     csv_files = [f for f in os.listdir(folder_path) if f.endswith('.csv')]
     def detect_encoding(file_path):
         with open(file_path, 'rb') as f:

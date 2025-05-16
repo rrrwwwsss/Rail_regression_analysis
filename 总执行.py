@@ -37,7 +37,7 @@ def zhixing(diqv,time):
         return test_size,random_state,all_data
 
 if __name__ == '__main__':
-    file_lujing = r"./结果/模型性能比较.xlsx"
+    file_lujing = r"结果/模型性能比较.xlsx"
     # 加载已有工作簿
     wb = openpyxl.load_workbook(file_lujing)
     for sheet in wb.sheetnames:
