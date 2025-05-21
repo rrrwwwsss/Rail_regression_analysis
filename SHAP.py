@@ -18,7 +18,7 @@ pd.set_option('display.width', 1000)
 pd.set_option('display.max_colwidth', 1000)
 def compute_metrics(qvyv,shijian,hang,test_size,random_state):
     # 1️⃣ 加载数据
-    folder_path = "数据"  # 替换为实际路径
+    folder_path = "./数据"  # 替换为实际路径
     csv_files = [f for f in os.listdir(folder_path) if f.endswith('.csv')]
     def detect_encoding(file_path):
         with open(file_path, 'rb') as f:

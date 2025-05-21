@@ -50,7 +50,7 @@ if __name__ == '__main__':
     hang = 1
     for p in ["D0"]: #"D0","D1","D2","D3","D4","D5","D6"
         start_col = start_col + 3
-        for q in ["Labour Day"]:#,"Have to work","workday","weekend"
+        for q in ["Labour Day","Have to work","workday","weekend"]:#,"Have to work","workday","weekend"
             print(p + q + "开始执行")
             if start_row >= 12:
                 start_row = 0
