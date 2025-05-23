@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
+import seaborn as sns
 from sklearn.datasets import load_diabetes
 from sklearn.metrics import mean_squared_error
 # matplotlib.use('TkAgg')
@@ -18,7 +19,7 @@ pd.set_option('display.width', 1000)
 pd.set_option('display.max_colwidth', 1000)
 def compute_metrics(qvyv,shijian,hang,test_size,random_state):
     # 1️⃣ 加载数据
-    folder_path = "./数据"  # 替换为实际路径
+    folder_path = "./数据/新建文件夹"  # 替换为实际路径
     csv_files = [f for f in os.listdir(folder_path) if f.endswith('.csv')]
     def detect_encoding(file_path):
         with open(file_path, 'rb') as f:
@@ -56,7 +57,7 @@ def compute_metrics(qvyv,shijian,hang,test_size,random_state):
     learning_rate = 0.15
     max_depth = 10
     df = merged_df.loc[merged_df["NAME_1"] == qvyv].drop(columns=["NAME_1", "name"])
-    df = df.fillna(-1)
+    df = df.fillna(0)
     # df.to_csv('../指标总结/D1Test.csv', index=False, encoding='utf-8')
     # 提取第一列作为因变量（注意：pandas 中的列索引从 0 开始）
     # y = df.iloc[:, 1]
@@ -189,16 +190,27 @@ def compute_metrics(qvyv,shijian,hang,test_size,random_state):
         # 将非法字符（包括 / \ : * ? " < > | 空格等）替换为下划线
         return re.sub(r'[\/\\\:\*\?\"\<\>\|\s]', '_', name)
     for i in X_name:
-        shap.dependence_plot(i, shap_values.values, X_test)
-        # 清洗 i 后作为文件名
+        # 获取特征值和对应 SHAP 值
+        x = X_test[i].values
+        y = shap_values.values[:, X_test.columns.get_loc(i)]
+
+        # 清洗列名
         safe_i = clean_filename(i)
 
-        # 拼接完整路径
+        # 创建画布
+        plt.figure(figsize=(6, 4))
+
+        # 绘制散点 + 拟合线
+        sns.regplot(x=x, y=y, lowess=True, scatter_kws={'s': 20, 'alpha': 0.6}, line_kws={'color': 'red'})
+
+        plt.xlabel(i)
+        plt.ylabel("SHAP Value")
+        plt.title(f"SHAP Dependence: {i}")
+
+        # 保存图
         save_path = os.path.join(folder_path, f"{safe_i}.png")
-        print(save_path)
-        # 保存图片
         plt.savefig(save_path, dpi=300, bbox_inches='tight')
-        plt.close()  # 关闭图像，防止内存占用
+        plt.close()
     return "执行成功"
 import sys
 if __name__ == "__main__":

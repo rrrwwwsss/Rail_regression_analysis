@@ -19,7 +19,7 @@ def zhibiao(test_size,random_state,qvyv,time):
     # 读取 Excel 文件（xls 格式）
     print(test_size)
     print(random_state)
-    folder_path = "./数据"  # 替换为实际路径
+    folder_path = "./数据/新建文件夹"  # 替换为实际路径
     csv_files = [f for f in os.listdir(folder_path) if f.endswith('.csv')]
     def detect_encoding(file_path):
         with open(file_path, 'rb') as f:
@@ -140,8 +140,8 @@ def zhibiao(test_size,random_state,qvyv,time):
     print("OLS:        MAE = {:.4f}, RMSE = {:.4f}, R2 = {:.4f}".format(mae_ols, rmse_ols, r2_ols))
     print("XGBoost:    MAE = {:.4f}, RMSE = {:.4f}, R2 = {:.4f}".format(mae_xgb, rmse_xgb, r2_xgb))
     # 删选符合条件的R2的参数
-    # if r2_ols < 0.0 or r2_xgb < 0.0:
-    #     return test_size,random_state,0,0
+    if r2_ols < 0.0 or r2_xgb < 0.0:
+        return test_size,random_state,0,0
     # ------------------------------
     # 4. 计算改进率函数
     # ------------------------------
